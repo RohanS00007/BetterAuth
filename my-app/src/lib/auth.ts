@@ -7,6 +7,16 @@ import { username } from "better-auth/plugins"
 export const auth = betterAuth({
     database: mongodbAdapter(client.db("ganeshsingh37713_db_user")),
 
+    user: {
+      additionalFields: {
+         isStudent: {
+             type: "string",
+             defaultValue: "yes",
+             input: false
+           } 
+       }
+   },
+
     emailAndPassword: { 
         enabled: true, 
       }, 
