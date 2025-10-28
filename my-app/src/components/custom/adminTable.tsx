@@ -61,11 +61,12 @@ export default function UsersTable() {
       </div>
     );
   }
-
+  let counter = 1;
   return (
     <Table>
       <TableHeader>
         <TableRow>
+          <TableHead>S.No.</TableHead>
           <TableHead>Name</TableHead>
           <TableHead>Email</TableHead>
           <TableHead>Role</TableHead>
@@ -77,15 +78,28 @@ export default function UsersTable() {
       <TableBody>
         {users.map((user) => (
           <TableRow key={user.id}>
+            <TableCell>{counter++}</TableCell>
             <TableCell>{user.name}</TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell>
-              <div className="flex place-content-center items-center gap-0.5 border">
-                <p>{user.role}</p>
-                <AdminRoleEdit userID={user.id as string} />
+              <div className="flex w-30 place-content-center items-center justify-between px-2">
+                <p
+                  className={
+                    user.role === "admin"
+                      ? "after:content[] font-semibold text-blue-600 after:content-['👑']"
+                      : "text-neutral-600"
+                  }
+                >
+                  {user.role}
+                </p>
+                <AdminRoleEdit userID={user.id as string} className="flex" />
               </div>
             </TableCell>
-            <TableCell>{user.emailVerified ? "Yes" : "No"}</TableCell>
+            <TableCell
+              className={user.emailVerified ? "text-green-600" : "text-red-600"}
+            >
+              {user.emailVerified ? "Yes" : "No"}
+            </TableCell>
             <TableCell>
               {user.banned ? (
                 <span className="text-red-500">Banned</span>

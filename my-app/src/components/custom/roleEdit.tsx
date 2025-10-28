@@ -20,7 +20,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 
-import { Edit } from "lucide-react";
+import { Check, Edit, Pencil } from "lucide-react";
 
 import {
   Popover,
@@ -29,13 +29,20 @@ import {
 } from "@/components/ui/popover";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
   userId: z.string().min(1, "User ID is required"),
   role: z.enum(["user", "admin"]),
 });
 
-export default function AdminRoleEdit({ userID }: { userID: string }) {
+export default function AdminRoleEdit({
+  userID,
+  className,
+}: {
+  userID: string;
+  className?: string;
+}) {
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -88,35 +95,41 @@ export default function AdminRoleEdit({ userID }: { userID: string }) {
     );
   }
   return (
-    <div>
+    <div className={cn("", className)}>
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="ghost">
-            <Edit className="mr-2 h-4 w-4" />
+            <Pencil className="size-[15px]" />
           </Button>
         </PopoverTrigger>
         <PopoverContent>
-          <div className="flex flex-col gap-4">
+          <div className="flex place-content-center rounded-md p-0">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8"
+                className="-py-4 flex place-content-center gap-1"
               >
                 <FormField
                   control={form.control}
                   name="role"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Role</FormLabel>
+                    <FormItem className="flex justify-evenly">
+                      <FormLabel>New Role</FormLabel>
                       <FormControl>
-                        <Input placeholder="user/admin" {...field} />
+                        <Input
+                          // placeholder="user/admin"
+                          {...field}
+                          className="w-1/2 flex-1"
+                        />
                       </FormControl>
                       <FormDescription></FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <Button type="submit">Submit</Button>
+                <Button type="submit">
+                  <Check className="mr-2 h-4 w-4" />
+                </Button>
               </form>
             </Form>
           </div>
