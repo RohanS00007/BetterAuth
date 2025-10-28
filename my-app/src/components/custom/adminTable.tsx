@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { authClient } from "@/lib/auth-client";
 import ImpersonateUser from "./impersonate-user";
 import type { Session } from "@/lib/auth";
+import AdminRoleEdit from "./roleEdit";
 
 type User = Session["user"];
 type Alluser = Partial<User>;
@@ -78,7 +79,12 @@ export default function UsersTable() {
           <TableRow key={user.id}>
             <TableCell>{user.name}</TableCell>
             <TableCell>{user.email}</TableCell>
-            <TableCell>{user.role}</TableCell>
+            <TableCell>
+              <div className="flex place-content-center items-center gap-0.5 border">
+                <p>{user.role}</p>
+                <AdminRoleEdit userID={user.id as string} />
+              </div>
+            </TableCell>
             <TableCell>{user.emailVerified ? "Yes" : "No"}</TableCell>
             <TableCell>
               {user.banned ? (
