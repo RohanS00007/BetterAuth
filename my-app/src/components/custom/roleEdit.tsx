@@ -30,6 +30,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 const formSchema = z.object({
   userId: z.string().min(1, "User ID is required"),
@@ -43,6 +44,7 @@ export default function AdminRoleEdit({
   userID: string;
   className?: string;
 }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -60,6 +62,7 @@ export default function AdminRoleEdit({
       },
       {
         onRequest: () => {
+          setIsSubmitting(true);
           toast("Requesting...", {
             description: "Wait a little",
             action: {
@@ -98,7 +101,11 @@ export default function AdminRoleEdit({
     <div className={cn("", className)}>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="ghost">
+          <Button
+            variant="ghost"
+            disabled={isSubmitting}
+            className="cursor-pointer opacity-100 disabled:opacity-20"
+          >
             <Pencil className="size-[15px]" />
           </Button>
         </PopoverTrigger>
@@ -127,7 +134,11 @@ export default function AdminRoleEdit({
                     </FormItem>
                   )}
                 />
-                <Button type="submit">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="opacity-100 disabled:opacity-20"
+                >
                   <Check className="mr-2 h-4 w-4" />
                 </Button>
               </form>

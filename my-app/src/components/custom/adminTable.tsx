@@ -63,7 +63,7 @@ export default function UsersTable() {
   }
   let counter = 1;
   return (
-    <Table>
+    <Table className="border-amber-700">
       <TableHeader>
         <TableRow>
           <TableHead>S.No.</TableHead>

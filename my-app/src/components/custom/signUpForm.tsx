@@ -35,7 +35,6 @@ import GoogleSignUp from "./google";
 import { useEffect, useState } from "react";
 import { useDebounceCallback } from "usehooks-ts";
 import { cn } from "@/lib/utils";
-import { error } from "console";
 
 const credentialSchema = z.object({
   username: z
@@ -82,7 +81,7 @@ export default function SignUpForm() {
       console.log("Username is not available for you, as it is already taken");
       setError("username", {
         type: "manual",
-        message: "Username is already taken, try another one",
+        message: error?.message || "Username already taken",
       });
     }
   }
@@ -148,7 +147,10 @@ export default function SignUpForm() {
           <hr className="blur-xs/50 mx-auto my-6 w-[90%] bg-neutral-300 shadow-[0_0_1px_1px_var(--color-neutral-300)]" />
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="grid grid-cols-1 space-y-8 md:grid-cols-2"
+            >
               <FormField
                 control={form.control}
                 name="name"
@@ -231,7 +233,7 @@ export default function SignUpForm() {
                 )}
               />
               <Button
-                className="mx-auto flex w-1/5 place-content-center"
+                className="col-span-1 mx-auto w-1/4 flex-col place-content-center items-center justify-center border md:col-span-2"
                 type="submit"
               >
                 Submit
