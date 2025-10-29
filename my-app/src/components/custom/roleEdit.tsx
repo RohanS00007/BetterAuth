@@ -139,7 +139,7 @@ export default function AdminRoleEdit({
                   disabled={isSubmitting}
                   className="opacity-100 disabled:opacity-20"
                 >
-                  <Check className="mr-2 h-4 w-4" />
+                  <Check className="h-4 w-4" />
                 </Button>
               </form>
             </Form>

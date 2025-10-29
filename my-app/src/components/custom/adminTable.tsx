@@ -14,6 +14,7 @@ import { authClient } from "@/lib/auth-client";
 import ImpersonateUser from "./impersonate-user";
 import type { Session } from "@/lib/auth";
 import AdminRoleEdit from "./roleEdit";
+import DeleteUser from "./deleteUser";
 
 type User = Session["user"];
 type Alluser = Partial<User>;
@@ -79,7 +80,14 @@ export default function UsersTable() {
         {users.map((user) => (
           <TableRow key={user.id}>
             <TableCell>{counter++}</TableCell>
-            <TableCell>{user.name}</TableCell>
+            <TableCell>
+              <div className="flex justify-evenly">
+                <p className="flex-1">{user.name}</p>
+                {user.role === "admin" ? null : (
+                  <DeleteUser userId={user.id as string} />
+                )}
+              </div>
+            </TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell>
               <div className="flex w-30 place-content-center items-center justify-between px-2">
