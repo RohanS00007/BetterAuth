@@ -137,6 +137,7 @@ export default function AdminRoleEdit({
                 <Button
                   type="submit"
                   disabled={isSubmitting}
+                  aria-label="Edit Role Button"
                   className="opacity-100 disabled:opacity-20"
                 >
                   <Check className="h-4 w-4" />

@@ -54,6 +54,7 @@ export default function DeleteUser({ userId }: { userId: string }) {
       <Button
         onClick={() => AdminDeleteUser(userId)}
         variant="secondary"
+        aria-label="button delete users"
         className="rounded-px cursor-pointer hover:ring"
       >
         <Trash2 className="size-3.5" />
