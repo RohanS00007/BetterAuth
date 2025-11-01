@@ -52,7 +52,7 @@ export const auth = betterAuth({
       },
       plugins: [
         admin(),
-        openAPI(), 
+        openAPI(),
         username({ 
           minUsernameLength: 8,  
           maxUsernameLength: 20, 
@@ -61,7 +61,8 @@ export const auth = betterAuth({
               return false
             } return true
     }
-  })
+  }),
+
 ] 
 });
 

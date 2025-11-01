@@ -12,7 +12,7 @@ export default function UserInfo() {
     return <p>Loading...</p>;
   }
   return (
-    <div className="mx-auto flex w-3xl justify-between rounded-lg p-5 shadow-md/10">
+    <div className="mx-auto flex w-3xl justify-between rounded-lg border-4 bg-none p-5 bg-blend-difference shadow-md/10">
       {session.user.image && (
         <Image
           className="mr-3 size-25 rounded-full border-2"

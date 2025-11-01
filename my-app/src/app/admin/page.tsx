@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function AdminDashboard() {
   return (
-    <main className="flex flex-col">
+    <main className="mt-2.5 flex min-h-screen w-full flex-col">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4">
         <div className="mb-8 flex flex-col gap-2">
           <h1 className="text-center text-4xl font-bold tracking-widest">

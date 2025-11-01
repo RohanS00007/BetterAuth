@@ -21,7 +21,7 @@ export default function HeroSection() {
       </div>
       {/* Hero Section paragraph */}
       <div>
-        <p className="mt-5 w-[500px] text-center text-xl font-normal">
+        <p className="mt-3 mb-2 w-[500px] text-center text-xl font-semibold text-white">
           One AI workspace where teams find every answer, automate the busywork,
           and get projects done.
         </p>

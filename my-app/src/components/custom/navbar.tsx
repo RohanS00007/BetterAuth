@@ -3,7 +3,8 @@ import { Button } from "../ui/button";
 import { authClient } from "@/lib/auth-client";
 import { div } from "motion/react-client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { motion } from "motion/react";
 
 // import { Session } from "better-auth";
 
@@ -21,12 +22,12 @@ export default function Navbar() {
     });
   }
   return (
-    <div>
-      <nav className="mx-auto flex h-20 w-[90%] place-content-center justify-between p-5">
+    <div className="w-full">
+      <nav className="blueBox mx-auto mt-2 flex h-20 w-[90%] place-content-center justify-between rounded-2xl p-4 shadow-md/20">
         <div className="flex flex-1 justify-evenly">
           {navLinks.map((navLink, index) => (
             <Link
-              className="rounded-md px-2 py-1 hover:bg-neutral-100 hover:ring"
+              className="rounded-md p-0 px-2 py-1 text-2xl text-white hover:ring"
               key={index}
               href={`/`}
             >
@@ -34,8 +35,13 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-        <div>
-          <Button onClick={signOut}>SignOut</Button>
+        <div className="flex w-50 justify-evenly">
+          <Button className="cursor-pointer" onClick={signOut}>
+            SignOut
+          </Button>
+          <Link href={"/sign-up"}>
+            <Button className="cursor-pointer">SignUp</Button>
+          </Link>
         </div>
       </nav>
     </div>
