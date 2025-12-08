@@ -25,7 +25,7 @@ import GoogleSignUp from "./google";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 import { Redo2 } from "lucide-react";
-import Image from "next/image";
+// import Image from "next/image";
 
 const signInSchema = z.object({
   username: z

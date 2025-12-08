@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 import { Button } from "@/components/ui/button";
 
 import {
@@ -45,6 +47,7 @@ export default function AdminRoleEdit({
   className?: string;
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const queryClient = useQueryClient();
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -79,10 +82,12 @@ export default function AdminRoleEdit({
               onClick: () => console.log("Undo"),
             },
           });
-          router.refresh();
-          setInterval(() => {
-            window.location.reload();
-          }, 1500);
+          // router.refresh();
+          // setInterval(() => {
+          //   window.location.reload();
+          // }, 1500);
+          queryClient.invalidateQueries({ queryKey: ["users"] });
+          setIsSubmitting(false);
         },
         onError: (ctx) => {
           console.log("error", ctx);

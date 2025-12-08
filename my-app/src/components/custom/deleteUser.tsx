@@ -1,9 +1,18 @@
+"use client";
+
 import { Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 
+import { useQueryClient } from "@tanstack/react-query";
+// import { useState } from "react";
+
+// // Get QueryClient from the context
+
 export default function DeleteUser({ userId }: { userId: string }) {
+  const queryClient = useQueryClient();
+  // const [queryClient] = useState(() => useQueryClient());
   const AdminDeleteUser = async (userId: string) => {
     try {
       await authClient.admin.removeUser(
@@ -28,9 +37,10 @@ export default function DeleteUser({ userId }: { userId: string }) {
                 onClick: () => console.log("Undo"),
               },
             });
-            setInterval(() => {
-              window.location.reload();
-            }, 1500);
+            // setInterval(() => {
+            //   window.location.reload();
+            // }, 1500);
+            queryClient.invalidateQueries({ queryKey: ["users"] });
           },
           onError: (ctx) => {
             console.log("error", ctx);

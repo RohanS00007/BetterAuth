@@ -1,4 +1,5 @@
 import UsersTable from "@/components/custom/adminTable";
+import UsersTanstackTable from "@/components/custom/adminTanstackTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function AdminDashboard() {
@@ -23,7 +24,8 @@ export default async function AdminDashboard() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <UsersTable />
+            {/* <UsersTable /> */}
+            <UsersTanstackTable />
           </CardContent>
         </Card>
       </div>
