@@ -12,7 +12,7 @@ export default function UserInfo() {
     return <p>Loading...</p>;
   }
   return (
-    <div className="mx-auto flex w-3xl justify-between rounded-lg border-4 bg-none p-5 bg-blend-difference shadow-md/10">
+    <div className="mx-auto h-min w-sm flex-col justify-between rounded-lg border-4 bg-none p-5 shadow-md/10 sm:w-xl md:w-2xl lg:w-3xl">
       {session.user.image && (
         <Image
           className="mr-3 size-25 rounded-full border-2"
@@ -23,8 +23,10 @@ export default function UserInfo() {
         ></Image>
       )}
       <div className="mx-auto w-2xl">
-        <h1 className="text-3xl text-blue-500">Welcome {session.user.name}</h1>
-        <h1 className="text-xl text-purple-400">
+        <h1 className="text-xl text-blue-500 md:text-3xl">
+          Welcome {session.user.name}
+        </h1>
+        <h1 className="text-sm text-purple-400 md:text-lg">
           You signed up with {session.user.email}
         </h1>
       </div>
