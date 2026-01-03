@@ -5,13 +5,22 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 // import { Menu } from "lucide-react";
 import NavSheet from "./navbar-sheet";
-// import { motion } from "motion/react";
+// import { Sun } from "lucide-react";
+import { motion } from "motion/react";
+import { useContext } from "react";
+// import { AuthContext } from "better-auth";
+import { AuthContext } from "./auth-provider";
+
+// Create a motion-wrapped version of our custom Button component
+const MotionButton = motion(Button);
 
 // import { Session } from "better-auth";
 
 export default function Navbar() {
   const navLinks = ["Home", "About", "Contacts"];
   const router = useRouter();
+
+  const value = useContext(AuthContext);
 
   async function signOut() {
     await authClient.signOut({
@@ -28,7 +37,7 @@ export default function Navbar() {
         <ul className="mx-auto hidden flex-1 justify-evenly md:block">
           {navLinks.map((navLink, index) => (
             <Link
-              className="rounded-md p-0 px-2 py-1 text-2xl text-white hover:ring"
+              className="mx-6 rounded-md p-0 px-2 py-1 text-2xl text-white hover:ring"
               key={index}
               href={`/`}
             >
@@ -42,12 +51,22 @@ export default function Navbar() {
       </div>
 
       <div className="flex w-50 justify-evenly">
-        <Button className="cursor-pointer" onClick={signOut}>
-          SignOut
-        </Button>
-        <Link href={"/sign-up"}>
-          <Button className="cursor-pointer">SignUp</Button>
-        </Link>
+        {/* Use motion(Button) to animate our custom Button */}
+        {/** Create a MotionButton by wrapping the Button component with motion */}
+        {!value ? (
+          <Link href={"/sign-up"}>
+            <Button className="cursor-pointer">SignUp</Button>
+          </Link>
+        ) : (
+          <MotionButton
+            className="cursor-pointer"
+            onClick={signOut}
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+          >
+            SignOut
+          </MotionButton>
+        )}
       </div>
     </nav>
 
