@@ -1,9 +1,8 @@
 "use client";
-import { useContext } from "react";
-import { AuthContext } from "./auth-provider";
+import { useAuthInfo } from "./auth-provider";
 
 export default function UserData() {
-  const value = useContext(AuthContext);
+  const value = useAuthInfo();
 
   return value ? (
     <div className="mx-auto mb-5 flex h-auto max-w-2xl flex-col p-5 text-2xl font-bold text-black">

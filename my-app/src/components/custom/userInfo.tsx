@@ -1,13 +1,10 @@
 "use client";
-import { authClient } from "@/lib/auth-client";
 import StopImpersonationBtn from "./stopImpersonation";
-import { useContext } from "react";
-import { AuthContext } from "./auth-provider";
-
+import { useAuthInfo } from "./auth-provider";
 import Image from "next/image";
 
 export default function UserInfo() {
-  const value = useContext(AuthContext);
+  const value = useAuthInfo();
 
   if (!value) {
     return <p>Loading...</p>;

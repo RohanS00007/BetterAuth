@@ -1,9 +1,14 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { createContext } from "react";
-import { Session } from "@/lib/auth";
+import { createContext, useContext } from "react";
+import type { Session } from "@/lib/auth";
 
-export const AuthContext = createContext<Session | null>(null);
+const AuthContext = createContext<Session | null>(null);
+
+export const useAuthInfo = (): Session | null => {
+  const authInfo = useContext(AuthContext);
+  return authInfo;
+};
 
 interface ChildProps {
   children: React.ReactNode;

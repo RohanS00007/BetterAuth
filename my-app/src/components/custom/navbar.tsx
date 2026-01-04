@@ -3,24 +3,20 @@ import { Button } from "../ui/button";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-// import { Menu } from "lucide-react";
 import NavSheet from "./navbar-sheet";
-// import { Sun } from "lucide-react";
+
 import { motion } from "motion/react";
-import { useContext } from "react";
-// import { AuthContext } from "better-auth";
-import { AuthContext } from "./auth-provider";
+
+import { useAuthInfo } from "./auth-provider";
 
 // Create a motion-wrapped version of our custom Button component
 const MotionButton = motion(Button);
-
-// import { Session } from "better-auth";
 
 export default function Navbar() {
   const navLinks = ["Home", "About", "Contacts"];
   const router = useRouter();
 
-  const value = useContext(AuthContext);
+  const value = useAuthInfo();
 
   async function signOut() {
     await authClient.signOut({
